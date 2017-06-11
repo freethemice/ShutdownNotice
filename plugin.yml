@@ -1,0 +1,24 @@
+name: ShutdownNotice
+main: net.pl3x.bukkit.shutdownnotice.ShutdownNotice
+version: 3.3
+author: BillyGalbreath
+description: ShutdownNotice Bukkit Plugin
+softdepend:
+- Pl3xBot
+commands:
+  shutdown:
+    description: Shuts the server down (or optionally restarts it)
+    usage: /<command> [time (reason) | cancel]
+    aliases:
+    - restart
+    - reboot
+    - sd
+    - rs
+    - rb
+permissions:
+  command.shutdown:
+    description: Allows access to shutdown or restart the server.
+    default: op
+  command.shutdown.reload:
+    description: Allows reloading of plugin.
+    default: op
