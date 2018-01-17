@@ -18,9 +18,9 @@ public class ServerStatus { private static ServerStatus status;
   }
   
   private State state;
-  private Integer timeLeft;
+  private Long timeLeft;
   private String reason;
-  public void setStatus(State state, Integer timeLeft, String reason)
+  public void setStatus(State state, Long timeLeft, String reason)
   {
     this.state = state;
     this.timeLeft = timeLeft;
@@ -31,7 +31,7 @@ public class ServerStatus { private static ServerStatus status;
     return this.state;
   }
   
-  public Integer getTimeLeft() {
+  public Long getTimeLeft() {
     return this.timeLeft;
   }
   

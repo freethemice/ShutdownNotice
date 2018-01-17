@@ -32,9 +32,10 @@ public class Countdown extends BukkitRunnable
   {
     ServerStatus status = ServerStatus.getStatus();
     ServerStatus.State state = status.getState();
-    Integer timeLeft = status.getTimeLeft();
+    Long timeLeft = status.getTimeLeft();
     String reason = status.getReason();
-    
+
+
     if ((state == null) || (state.equals(ServerStatus.State.RUNNING)) || (timeLeft == null)) {
       status.setStatus(ServerStatus.State.RUNNING, null, null);
       cancel();
@@ -44,7 +45,7 @@ public class Countdown extends BukkitRunnable
     if (reason == null) {
       reason = "";
     }
-    
+    timeLeft = (timeLeft - System.currentTimeMillis()) / 1000;
 
 
     String time = Lang.TIME_FORMAT.replace("{minutes}", String.format("%02d", new Object[] { Integer.valueOf(timeLeft.intValue() / 60) })).replace("{seconds}", String.format("%02d", new Object[] { Integer.valueOf(timeLeft.intValue() % 60) }));
@@ -90,7 +91,7 @@ public class Countdown extends BukkitRunnable
       broadcastChat(action, time, reason);
     }
     
-    status.setStatus(state, Integer.valueOf(timeLeft.intValue() - 1), reason);
+    //status.setStatus(state, Integer.valueOf(timeLeft.intValue() - 1), reason);
     this.firstRun = false;
   }
   

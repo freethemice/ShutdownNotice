@@ -18,7 +18,7 @@ public class PingListener implements org.bukkit.event.Listener
     
     ServerStatus status = ServerStatus.getStatus();
     ServerStatus.State state = status.getState();
-    Integer timeLeft = status.getTimeLeft();
+    Long timeLeft = status.getTimeLeft();
     String reason = status.getReason();
     
     if ((state == null) || (state.equals(ServerStatus.State.RUNNING)) || (timeLeft == null)) {
@@ -28,7 +28,8 @@ public class PingListener implements org.bukkit.event.Listener
     if (reason == null) {
       reason = "";
     }
-    
+
+    timeLeft = (timeLeft - System.currentTimeMillis()) / 1000;
     int seconds = timeLeft.intValue() % 60;
     int minutes = timeLeft.intValue() / 60;
     

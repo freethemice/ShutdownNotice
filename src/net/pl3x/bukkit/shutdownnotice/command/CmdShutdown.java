@@ -61,7 +61,7 @@ public class CmdShutdown implements TabExecutor {
                     } else {
                         Config.reload();
                         Lang.reload(true);
-                        status.setStatus(State.RUNNING, (Integer)null, (String)null);
+                        status.setStatus(State.RUNNING, (Long)null, (String)null);
                         (new Chat(Lang.RELOAD.replace("{plugin}", this.plugin.getName()).replace("{version}", this.plugin.getDescription().getVersion()))).send(sender);
                         return true;
                     }
@@ -105,8 +105,8 @@ public class CmdShutdown implements TabExecutor {
 
                             reason = sb.toString().trim();
                         }
-
-                        status.setStatus(newState, Integer.valueOf(var13), reason);
+                        Long timeleft = System.currentTimeMillis() + Long.valueOf(var13) * 1000;
+                        status.setStatus(newState, timeleft, reason);
                         (new Countdown(this.plugin)).runTaskTimer(this.plugin, 0L, 20L);
                         return true;
                     }
@@ -129,7 +129,7 @@ public class CmdShutdown implements TabExecutor {
                     this.plugin.getBotHook().sendToDiscord("*" + time.trim() + "*");
                 }
 
-                status.setStatus(State.RUNNING, (Integer)null, (String)null);
+                status.setStatus(State.RUNNING, (Long)null, (String)null);
                 return true;
             }
         }
